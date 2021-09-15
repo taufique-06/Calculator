@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Calculator</title>
+	<style >
+		html,body{
+			height: 100%;
+		}
+		body{
+			background: linear-gradient(248deg, #0078b3 0%, #7f8038 100%);
+		}
+		.calculator
+		{
+			background-color: white;
+			width: 300px;
+			padding: 15px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			text-align: center;
+			list-style-position: inside;
+			border-radius: 15px;
+			/*text-align: center;*/
+			box-shadow: 0 6px #a1a1a1, 0 8px 10px rgba(0, 0, 0,0.75);
+		}
+
+		.result{
+			color: white;
+			background-color: black;
+			width: 90%;
+			margin: 8px 0 20px 10px;
+			text-align: right;
+			height: 50px;
+			line-height: 50px;
+			font-size: 35px;
+			padding-right: 10px;
+			overflow: hidden;
+			box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5), inset 0px 2px 0 #a1a1a1;
+		}
+
+		ul{
+			padding: 0;
+			margin: 0;
+		}
+
+		ul li{
+			list-style: none;
+			background-color: #454545;
+			padding: 10px;
+			width: 15%;
+			float: left;
+			margin: 5px;
+			cursor: pointer;
+			font-size: 20px;
+			border-radius: 5px;
+			box-shadow: 0 5px 0 #a5a5a5, inset 0 2px 5px #a1a1a1;
+		}
+
+		ul li:active {
+			position: relative;
+			top: 5px;
+		}
+
+		ul li:nth-child(17){
+			width: 50%;
+		}
+
+		ul li:nth-child(17){
+			width: 65%;
+			margin-top: -50px;
+		}
+
+		ul li:nth-child(16){
+			height:80px;
+			line-height: 75px;
+		}
+
+
+
+		#signature{
+			position: relative;
+			border: 1px solid red;
+			top: 20px;
+			right:80px;
+			/*z-index has been used to set the box behind the buttons 
+			z-index: -1;*/
+			float: right;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="calculator">
+	<div class="result">0</div>
+		<ul>
+			<li>C</li>
+			<li>*</li>
+			<li>/</li>
+			<li>+</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>*</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>-</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>=</li>
+			<li>0</li>
+		</ul>
+
+		<p id="signature">&copy;Taufique Azad</p>
+	</div>
+<script>
+	const lis = document.querySelectorAll("ul li")
+	lis.forEach((node) =>{
+		node.addEventListener("mousedown",function(event){
+			const value = node.innerText.trim();
+			const result = document.querySelector(".result");
+			const resultText = result.innerText;
+
+			if (resultText == "0" || resultText == "Infinity" || resultText == "undefined")
+			{
+				result.innerText = "";
+			}
+
+			if (value == "C") {
+				result.innerText = "0"
+				return true;
+			}
+
+			if (value == "="){
+				let solution = eval(resultText)
+				result.innerText = solution;
+				return true;
+			}
+
+			let appendValue = result.append(value)
+
+		
+		})
+	})
+</script>
+</body>
+</html>
